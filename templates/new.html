@@ -1,0 +1,17 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+New
+{% endblock title %}
+
+{% block content %}
+<h1><font>Вы читаете новость, по категории "{{ new.category }}"<br></font><br> {{new.name|censor}}</h1>
+<hr>
+<div class="alert alert-warning">
+    <p><strong>{{ new.description|censor }}</strong></p>
+</div>
+<hr>
+<h6 align="right">Дата публикации: {{ new.some_datetime|date:"d M Y" }}</h6>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends 'flatpages/default.html' %}
+
+{% load custom_filters %}
+<!-- Подключаем новый файл с нашим тегом -->
+{% load custom_tags %}
+
+{% block title %}
+News
+{% endblock title %}
+
+{% block content %}
+    <div class="features">
+        <h1>Новости на сайте <br>
+            {% current_time '%d %b %Y' %}
+        </h1>
+        <h6><font color="gray">
+            строка ниже укаэыват сколько всего новостей находиться на странице
+        </font></h6>
+
+        <h3>>>{{ news|length }}<<</h3>
+        <hr>
+        {% if news %}
+            {% for el in news %}
+            <div class="alert alert-warning">
+                <h3>{{ el.name|censor }}</h3>
+                <p>{{ el.description|truncatechars:20|censor }}</p>
+                <h6 align="right">Дата публикации: {{ el.some_datetime|date:"d M Y" }}</h6>
+            </div>
+            <hr>
+            {% endfor %}
+        {% else %}
+            <h2>Новостей нет!</h2>
+
+        {% endif %}
+    </div>
+{% endblock content %}
